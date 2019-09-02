@@ -1,0 +1,20 @@
+{
+    "autoload": {
+        "classmap": [
+            "./"
+        ],
+        "psr-4":{
+            "App\\":"app"
+        },
+        "files": ["core/helpers.php"]
+    },
+    "require": {
+        "rakit/validation": "^1.2",
+        "icanboogie/inflector": "^1.5",
+        "intervention/image": "^2.5",
+        "nesbot/carbon": "^2.22"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.3"
+    }
+}
