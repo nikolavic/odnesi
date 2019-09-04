@@ -1,8 +1,10 @@
 <?php require('partials/admin-layout.php'); ?>
+<script src="/public/javascript/products.js"></script>
+
 <div class="row edit-products">
     <div class="col-md-8 col-sm-4">
         <h1>Dodajte proizvod</h1>
-<form method="post" action="store_products" class="add-product-form" enctype="multipart/form-data">
+<form method="post" action="store_products" class="add-product-form" id="contact_form" enctype="multipart/form-data">
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Ime proizvoda</label>
         <div class="col-sm-10">

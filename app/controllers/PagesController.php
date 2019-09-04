@@ -22,7 +22,7 @@ class PagesController
 
     public function home()
     {
-        $category = $this->product_category->selectAll();
+        $category = $this->product_category->randItem(4);
         $products = $this->product->randItem(4);
 
         return view('index',compact('category','products'));

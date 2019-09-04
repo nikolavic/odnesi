@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Product_Category;
 use App\Classes\Session;
+use Rakit\Validation\Validator;
 
 class ShopController
 {
@@ -28,6 +29,18 @@ class ShopController
 
     public function store()
     {
+        $validator= new Validator();
+        $validator= $validator ->validate($_POST,[
+            'qty'=>'required|numeric',
+            'price'=>'required|numeric'
+        ]);
+
+        if ($validator->fails()) {
+            // handling errors
+            $errors = $validator->errors()->toArray();
+            Session::set_session('errors',$errors);
+            return redirect('products');
+        }
         $cart=new Cart();
         $products=new Product();
         $price=$products->find($_GET['product_id'])->price * $_POST['qty'];
@@ -65,6 +78,20 @@ class ShopController
 
     public function storeOrder()
     {
+
+        $validator= new Validator();
+        $validator= $validator ->validate($_POST,[
+            'address'=>'required',
+            'phone'=>'required',
+           //dodati validaciju za vreme
+        ]);
+
+        if ($validator->fails()) {
+            // handling errors
+            $errors = $validator->errors()->toArray();
+            Session::set_session('errors',$errors);
+            return redirect('products');
+        }
         $cart=new Cart();
         $carts=$cart->whereIn(['id',[$_POST['products']]]);
         $sum=array_sum(array_map(function($item) {

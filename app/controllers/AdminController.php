@@ -150,6 +150,16 @@ class AdminController
 
     public function store_additions()
     {
+        $validator= new Validator();
+        $validator= $validator ->validate($_POST,[
+             'name'=>'required|max:30'
+        ]);
+        if ($validator->fails()) {
+            // handling errors
+            $errors = $validator->errors()->toArray();
+            Session::set_session('errors',$errors);
+            return redirect('products');
+        }
         $addition=new Addition();
         $addition->insert([
             'name'=>$_POST['name'],
@@ -190,6 +200,17 @@ class AdminController
 
     public function update_category()
     {
+        $validator= new Validator();
+        $validator= $validator ->validate($_POST,[
+            'name'=>'required|max:30'
+        ]);
+
+        if ($validator->fails()) {
+            // handling errors
+            $errors = $validator->errors()->toArray();
+            Session::set_session('errors',$errors);
+            return redirect('products');
+        }
         $cat=new Product_Category();
         $cat=$cat->find($_GET['cat']);
         $cat->update([
@@ -200,6 +221,17 @@ class AdminController
 
     public function add_category()
     {
+        $validator= new Validator();
+        $validator= $validator ->validate($_POST,[
+            'name'=>'required|max:30'
+        ]);
+
+        if ($validator->fails()) {
+            // handling errors
+            $errors = $validator->errors()->toArray();
+            Session::set_session('errors',$errors);
+            return redirect('products');
+        }
         $cat=new Product_Category();
         $cat->insert([
           'name'=>$_POST['name']

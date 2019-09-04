@@ -1,6 +1,10 @@
 <?php require('partials/admin-layout.php'); ?>
 <div class="container ml-60">
     <?php
+    if(\App\Classes\Session::has('errors')){ ?>
+    <div class="alert alert-success"><?php \App\Classes\Session::flash('errors'); ?></div>
+    <?php }?>
+           <?php
     if(\App\Classes\Session::has('success')){ ?>
         <div class="alert alert-success"><?php \App\Classes\Session::flash('success'); ?></div>
     <?php } ?>
