@@ -50,7 +50,7 @@ class Model extends QueryBuilder
         return array_pop($path);
     }
 
-    public function has_many($class)
+    public function has_many($class)//jedan na vise
     {
         $inflector = Inflector::get('en');
         $this->table = $inflector->pluralize($this->get_table_for_relation($class));
@@ -61,7 +61,7 @@ class Model extends QueryBuilder
 
     }
 
-    public function belongsTo($class)
+    public function belongsTo($class) //one to one naopacke
     {
         $obj=new $class;
         $class_name = $class;
@@ -78,7 +78,7 @@ class Model extends QueryBuilder
 
     }
 
-    public function belongsToMany($class)
+    public function belongsToMany($class) //many to many
     {
         $pivot = $this->make_pivot($class);
         $parameters = [
@@ -88,6 +88,7 @@ class Model extends QueryBuilder
         $class_name = $class;
         $class = new $class;
         $selector = $this->get_table_for_relation($class_name) . "_id";
+        $collection=[];
         foreach ($result_from_pivot as $pivot) {
             $collection[] = $class->where([
                 "id" => $pivot->$selector

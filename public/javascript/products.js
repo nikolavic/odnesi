@@ -10,8 +10,8 @@ $(document).ready(function() {
             name: {
                 validators: {
                     stringLength: {
-                        message: 'Ime mora da ima minimalno 8 karaktera i maksimalno 50 karaktera',
-                        min: 8,
+                        message: 'Ime mora da ima minimalno 3 karaktera i maksimalno 50 karaktera',
+                        min: 3,
                         max:50,
                     },
                     notEmpty: {
@@ -33,57 +33,15 @@ $(document).ready(function() {
             price: {
                 validators: {
                     stringLength: {
-                        message: 'Sifra mora da ima minimalno 5 karaktera i maksimalno 50 karaktera',
-                        min: 8,
-                        max:50,
+                        message: 'Morate uneti broj minimalno 2 karaktera maximalno 4',
+                        min: 2,
+                        max:4,
                     },
                     notEmpty: {
-                        message: 'Unesite password'
+                        message: 'Unesite cenu'
                     }
                 }
             },
-            confirm_password: {
-                validators: {
-                    stringLength: {
-                        min: 8,
-                        max:50,
-                    },
-                    notEmpty: {
-                        message: 'Potvrdite Password'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'Unesite Email Adresu'
-                    },
-                    emailAddress: {
-                        message: 'Unesite validnu Email adresu'
-                    }
-                }
-            },
-            contact_no: {
-                validators: {
-                    stringLength: {
-                        min: 5,
-                        max: 50,
-                        notEmpty: {
-                            message: 'Unesite Br. telefona'
-                        }
-                    }
-                }
-        },
-            address: {
-                validators: {
-                    stringLength: {
-                        min: 5,
-                        max: 50,
-                        notEmpty: {
-                            message: 'Unesite ulicu,broj i grad'
-                        }
-                    }
-                },
-            }
+    
     }})
 });

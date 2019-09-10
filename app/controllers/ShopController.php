@@ -32,14 +32,13 @@ class ShopController
         $validator= new Validator();
         $validator= $validator ->validate($_POST,[
             'qty'=>'required|numeric',
-            'price'=>'required|numeric'
         ]);
 
         if ($validator->fails()) {
             // handling errors
             $errors = $validator->errors()->toArray();
             Session::set_session('errors',$errors);
-            return redirect('products');
+            return redirect('shop');
         }
         $cart=new Cart();
         $products=new Product();

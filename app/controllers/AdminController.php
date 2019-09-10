@@ -58,19 +58,21 @@ class AdminController
     {
         $validator=new Validator();
         $validator= $validator->validate($_POST + $_FILES,[
-            'name'=>'required|min:8|max:50',
+            'name'=>'required|min:1|max:50',
             'decleration'=>'required|min:20',
             'category_id'=>'required',
             'price'=>'required|numeric',
             'taste'=>'required',
-            'images*'=>'required'
+            'images]*'=>'required',
+            'cover'=>'required'
             ]);
         $validator->validate();
 
         if(count($_FILES['images']['name']) < 7){
             $img_error="You must upload minimum 7 photo";
         }
-
+        $img=new ImageManager();
+        $product_image=new Product_image();
         if ($validator->fails()) {
             // handling errors
             $errors = $validator->errors()->toArray();
@@ -84,6 +86,15 @@ class AdminController
         }
 
         $product= new Product();
+        if(isset($_FILES['cover']['tmp_name'])) {
+            $image = $img->make($_FILES['cover']['tmp_name']);
+            $path = 'public/images/products';
+            $img_name = time() . '_' . $_FILES['cover']['name'];
+            $image->save($path . '/' . $img_name);
+            $full_link = $path . '/' . $img_name;
+        }else {
+            $full_link="";
+        }
 
         $product->insert([
             'name'=>$_POST['name'],
@@ -91,7 +102,8 @@ class AdminController
             'declaration'=>$_POST['decleration'],
             'price'=>$_POST['price'],
             'user_id'=>auth()->user()->id,
-            'taste'=>$_POST['taste']
+            'taste'=>$_POST['taste'],
+            'cover_photo'=>$full_link
         ]);
 
         $product_addition= new Product_addition();
@@ -103,9 +115,9 @@ class AdminController
             $product_addition->insert($param);
         }
 
-        $img=new ImageManager();
-        $product_image=new Product_image();
+        
         for($i=0;$i<count($_FILES['images']['name']);$i++){
+            if(isset($_FILES['images']['name'])){
             $image = $img->make($_FILES['images']['tmp_name'][$i]);
             $path = 'public/images/products';
             $img_name = time() . '_' . $_FILES['images']['name'][$i];
@@ -115,7 +127,9 @@ class AdminController
                 'link'=>$full_link,
                 'product_id'=>$product->get_last_inserted()
             ]);
-        }
+        }}
+
+     redirect('products');
 
 
     }

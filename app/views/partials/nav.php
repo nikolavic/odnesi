@@ -10,7 +10,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li ><a href="#">Pocetna</a></li>
+                <li ><a href="/">Pocetna</a></li>
                 <li><a href="/shop">Prodavnica</a></li>
                 <li><a href="#">Knjiga utisaka</a></li>
             </ul>
@@ -21,7 +21,7 @@
                 <?php }else{ if(check_cart()){?>
                     <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Korpa</a></li>
                     <?php } ?>
-                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> <?php echo auth()->user()->name; ?></a></li>
+                    <li><a href=""><span class="glyphicon glyphicon-user"></span> <?php echo auth()->user()->name; ?></a></li>
                     <li><a href="/client-order"><span class="glyphicon glyphicon-shopping-cart"></span> Porudzbine</a></li>
 
                     <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

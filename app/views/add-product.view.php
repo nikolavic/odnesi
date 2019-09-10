@@ -46,7 +46,14 @@
     </div>
     <div class="input-group">
         <div class="custom-file">
-            <label class="custom-file-label" for="inputGroupFile01">Izaberi sliku</label>
+            <label class="custom-file-label" for="inputGroupFile01">Dodaj glavnu sliku</label>
+            <input name="cover"  type="file" class="custom-file-input" id="gallery-photo-add"
+                   aria-describedby="inputGroupFileAddon01" multiple>
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="custom-file">
+            <label class="custom-file-label" for="inputGroupFile01">Izaberi slike</label>
             <input name="images[]"  type="file" class="custom-file-input" id="gallery-photo-add"
                    aria-describedby="inputGroupFileAddon01" multiple>
         </div>
